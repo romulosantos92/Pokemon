@@ -83,10 +83,17 @@ public class Arena {
     public Treinador partida(Treinador t1, Treinador t2){
         Pokemon pk1, pk2,winner;
         while(t1.pokemonsAptos()>0&&t2.pokemonsAptos()>0){
-            pk1=t1.escolher();
-            pk2=t2.escolher();
+            if(t1.pokemonsAptos()>t2.pokemonsAptos()){
+                pk2=t2.escolher();
+                pk1=t1.escolher();
+            }
+            else{
+                pk1=t1.escolher();
+                pk2=t2.escolher();
+            }
             winner=this.luta(pk1, pk2);
             System.out.println(winner.getNome() + " venceu!");
+            System.out.println("==============================");
         }
         if(t1.pokemonsAptos()<=0)
             return t2;

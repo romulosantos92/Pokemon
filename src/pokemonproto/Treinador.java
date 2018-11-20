@@ -6,6 +6,8 @@
 package pokemonproto;
 
 import java.util.Scanner;
+import java.util.InputMismatchException;
+import java.lang.ArrayIndexOutOfBoundsException;
 /**
  *
  * @author romul
@@ -47,28 +49,45 @@ public class Treinador {
         return count;
     }
     public Pokemon escolher(){
-        int ans=-1;
+        int ans=0;
         Scanner input=new Scanner(System.in);
         for(int i=0; i<6; i++){
             if(this.getPokemon(i).getHp()<=0)
                 System.out.println(i+1 + " - " + this.getPokemon(i).getNome() + " - Derrotado");
             else
-                System.out.println(i+1 + " - " + this.getPokemon(i).getNome());
+                System.out.println(i+1 + " - " + this.getPokemon(i).getNome() + " - Hp: " + this.getPokemon(i).getHp());
         }
+        boolean choice=false;
         do{
             System.out.println("==============================");
             System.out.println("Treinador " + this.getNome() + " : Escolha um pokemon:");
-            ans=input.nextInt();
-            if(this.getPokemon(ans).getHp()<=0){
-                ans=-1;
-                System.out.println("Impossivel escolher - Este pokemon ja foi derrotado");
+            try{
+                ans=input.nextInt();
             }
-            if(ans<1||ans>6){
-                System.out.println("Impossivel escolher - Indice invalido");
+            catch(InputMismatchException e){
+                System.out.println("Entrada invalida");
+                System.out.println("===============================");
+                ans=0;
+                continue;
             }
-        }while(ans<1||ans>6);
-        System.out.println("Escolheu " + this.getPokemon(ans-1).getNome());
-        System.out.println("==============================");
-        return this.getPokemon(ans-1);
+            try{
+                if(this.getPokemon(ans-1).getHp()<=0){
+                    System.out.println("Impossivel escolher - Este pokemon ja foi derrotado");
+                    System.out.println("==============================");
+                }
+                else{
+                    System.out.println("Escolheu " + this.getPokemon(ans-1).getNome());
+                    System.out.println("==============================");
+                    choice=true;
+                    return this.getPokemon(ans-1);
+                }
+            }
+            catch(ArrayIndexOutOfBoundsException e){
+                System.out.println("Indice invalido");
+                System.out.println("===============================");
+                ans=0;
+            }
+        }while(choice==false);
+        return null;
     }
 }
