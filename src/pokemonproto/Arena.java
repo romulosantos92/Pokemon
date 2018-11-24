@@ -7,14 +7,27 @@ package pokemonproto;
 
 import java.util.Scanner;
 /**
- *
- * @author romul
+ * Classe contendo um conjunto de funções necessárias para as batalhas entre pokemons.
+ * 
+ * @author Rômulo Santos
+ * 
+ * @version 2.3
+ * 
+ * @since 1.0
  */
 public class Arena {
-    
+    /**
+     * Construtor da classe.
+     */
     public Arena(){
         
     }
+    /**
+     * Inicializa os treinadores.
+     * 
+     * @param t1 Treinador - Treinador 1
+     * @param t2 Treinador - Treinador 2
+     */
     public void bootUpTreinadores(Treinador t1, Treinador t2){
         Pokedex dataBase=new Pokedex();
         dataBase.bootUpPokedex();
@@ -36,6 +49,12 @@ public class Arena {
         t2.printBanco();
         System.out.println("==============================");
     }
+    /**
+     * Inicializa os pokemons de um treinador.
+     * 
+     * @param tr Treinador - Treinador a receber os pokemons.
+     * @param pk Pokedex - Banco de dados a partir do qual os pokemons serão selecionados.
+     */
     public void bootUpBanco(Treinador tr, Pokedex pk){
         tr.setPokemon(0, pk.getPokemon((int)(Math.random()*387)%pk.getSize()));
         tr.setPokemon(1, pk.getPokemon((int)(Math.random()*846)%pk.getSize()));
@@ -49,6 +68,13 @@ public class Arena {
             tr.getPokemon(i).chooseLastMoves();
         }
     }
+    /**
+     * Executa uma luta entre 2 pokemons.
+     * 
+     * @param pk1 - Pokemon 1.
+     * @param pk2 - Pokemon 2.
+     * @return Pokemon - Vencedor da luta.
+     */
     public Pokemon luta(Pokemon pk1, Pokemon pk2){
         while((pk1.getHp()>0)&&(pk2.getHp()>0)){
             System.out.println(pk1.getNome() + " hp: " + pk1.getHp());
@@ -80,6 +106,13 @@ public class Arena {
         }
         return null;
     }
+    /**
+     * Executa uma partida de pokemon.
+     * 
+     * @param t1 - Treinador 1.
+     * @param t2 - Treinador 2.
+     * @return Treinador - Vencedor da partida.
+     */
     public Treinador partida(Treinador t1, Treinador t2){
         Pokemon pk1, pk2,winner;
         while(t1.pokemonsAptos()>0&&t2.pokemonsAptos()>0){

@@ -9,28 +9,65 @@ import java.util.Scanner;
 import java.util.InputMismatchException;
 import java.lang.ArrayIndexOutOfBoundsException;
 /**
- *
- * @author romul
+ * Classe representando um treinador.
+ * 
+ * @author Rômulo Santos
+ * 
+ * @version 2.3
+ * 
+ * @since 1.0
  */
 public class Treinador {
+    /**
+     * Representa o nome do treinador.
+     */
     private String nome;
+    /**
+     * Vetor de 6 posições representando os pokemons do treinador.
+     */
     private Pokemon[] banco;
-    
+    /**
+     * Construtor da classe.
+     */
     public Treinador(){
         this.banco=new Pokemon[6];
     }
+    /**
+     * Retorna o nome do treinador.
+     * 
+     * @return String - Nome do treinador.
+     */
     public String getNome(){
         return this.nome;
     }
+    /**Altera o nome do treinador.
+     * 
+     * @param s String - Novo nome.
+     */
     public void setNome(String s){
         this.nome=s;
     }
+    /**
+     * Retorna um dos pokemons do banco.
+     * 
+     * @param i int - indice do banco.
+     * @return Pokemon - Pokemon selecionado.
+     */
     public Pokemon getPokemon(int i){
         return this.banco[i];
     }
+    /**
+     * Altera os pokemons no banco.
+     * 
+     * @param i int - Indice do banco.
+     * @param pk Pokemon - Pokemon a ser inserido.
+     */
     public void setPokemon(int i, Pokemon pk){
         this.banco[i]=pk;
     }
+    /**
+     * Imprime o banco de um treinador.
+     */
     public void printBanco(){
         for(int i=0; i<6; i++){
             System.out.println(this.banco[i].getNome() + " - " + this.banco[i].getTipo());
@@ -40,6 +77,11 @@ public class Treinador {
             System.out.println("");
         }
     }
+    /**
+     * Verifica quantos pokemons deste treinador ainda estão aptos a lutar.
+     * 
+     * @return int - numero de pokemons aptos.
+     */
     public int pokemonsAptos(){
         int count=0;
         for(int i=0; i<6; i++){
@@ -48,6 +90,11 @@ public class Treinador {
         }
         return count;
     }
+    /**
+     * Escolhe um pokemon para lutar.
+     * 
+     * @return Pokemon - Pokemon selecionado.
+     */
     public Pokemon escolher(){
         int ans=0;
         Scanner input=new Scanner(System.in);

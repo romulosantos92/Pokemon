@@ -7,13 +7,23 @@ package pokemonproto;
 
 import java.util.ArrayList;
 /**
- *
- * @author romul
+ * Classe representando os Pokemons do tipo água.
+ * 
+ * @author Rômulo Santos
+ * 
+ * @version 2.3
+ * 
+ * @since 1.0
  */
 public class Agua extends Pokemon{
-    
+    /**
+     * ArrayList contendo ataques do tipo água, 
+     * a partir dos quais os dois ultimos ataques serão selecionados.
+     */
     private ArrayList<Ataque> waterMove;
-    
+    /**
+     * Construtor da classe.
+     */
     public Agua(){
         this.waterMove=new ArrayList<>();
         this.setTipo("Agua");
@@ -23,9 +33,19 @@ public class Agua extends Pokemon{
         this.resistencias.add("Fogo");
         this.resistencias.add("Gelo");
     }
+    /**
+     * Retorna um ataque do ArrayList de ataques do tipo água.
+     * 
+     * @param i int - Indice do ArrayList de ataques do tipo água.
+     * @return Ataque - Ataque do ArrayList de ataques do tipo água.
+     */
     public Ataque getWaterMove(int i){
         return this.waterMove.get(i);
     }
+    /**
+     * Seleciona os 2 últimos ataques do Pokemon.
+     */
+    @Override
     public void chooseLastMoves(){
         this.bootUpWaterMove();
         this.setMove(this.getWaterMove((int)(Math.random()*100)%10), 2);
@@ -34,6 +54,9 @@ public class Agua extends Pokemon{
         }while(this.getMove(2).getNome().equals(this.getMove(3).getNome()));
         this.waterMove.clear();
     }
+    /**
+     * Inicializa o ArrayList de ataques do tipo água.
+     */
     public void bootUpWaterMove(){
         Ataque aux;
         aux=new Ataque("Bubble Beam", "Agua", 2, 65, 1.0);

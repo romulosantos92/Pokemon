@@ -7,12 +7,24 @@ package pokemonproto;
 
 import java.util.ArrayList;
 /**
- *
- * @author romul
+ * Classe representando os Pokemons do tipo venenoso.
+ * 
+ * @author Rômulo Santos
+ * 
+ * @version 2.3
+ * 
+ * @since 1.0
  */
 public class Venenoso extends Pokemon{
+    /**
+     * ArrayList contendo ataques do tipo venenoso, 
+     * a partir dos quais os dois ultimos ataques serão selecionados.
+     * 
+     */
     private ArrayList<Ataque> poisonMove;
-    
+    /**
+     * Construtor da classe.
+     */
     public Venenoso(){
         this.poisonMove=new ArrayList<>();
         this.setTipo("Venenoso");
@@ -23,9 +35,20 @@ public class Venenoso extends Pokemon{
         this.resistencias.add("Venenoso");
         this.resistencias.add("Inseto");
     }
+    /**
+     * Retorna um ataque do ArrayList de ataques do tipo venenoso.
+     * 
+     * @param i int - Indice do ArrayList de ataques do tipo venenoso.
+     * @return Ataque - Ataque do ArrayList de ataques do tipo venenoso.
+     */
     public Ataque getPoisonMove(int i){
         return this.poisonMove.get(i);
     }
+    /**
+     * Seleciona os 2 últimos ataques do Pokemon.
+     * 
+     */
+    @Override
     public void chooseLastMoves(){
         this.bootUpPoisonMove();
         this.setMove(this.getPoisonMove((int)(Math.random()*100)%10), 2);
@@ -34,6 +57,9 @@ public class Venenoso extends Pokemon{
         }while(this.getMove(2).getNome().equals(this.getMove(3).getNome()));
         this.poisonMove.clear();
     }
+    /**
+     * Inicializa o ArrayList de ataques do tipo venenoso.
+     */
     public void bootUpPoisonMove(){
         Ataque aux;
         aux=new Ataque("Bubble Beam", "Eletrico", 2, 65, 1.0);

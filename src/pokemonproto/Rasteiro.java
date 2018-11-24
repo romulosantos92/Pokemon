@@ -7,12 +7,23 @@ package pokemonproto;
 
 import java.util.ArrayList;
 /**
- *
- * @author romul
+ * Classe representando os Pokemons do tipo rasteiro.
+ * 
+ * @author Rômulo Santos
+ * 
+ * @version 2.3
+ * 
+ * @since 1.0
  */
 public class Rasteiro extends Pokemon{
+    /**
+     * ArrayList contendo ataques do tipo Rasteiro, 
+     * a partir dos quais os dois ultimos ataques serão selecionados.
+     */
     private ArrayList<Ataque> groundMove;
-    
+    /**
+     * Construtor da classe.
+     */
     public Rasteiro(){
         this.groundMove=new ArrayList<>();
         this.setTipo("Rasteiro");
@@ -23,9 +34,19 @@ public class Rasteiro extends Pokemon{
         this.resistencias.add("pedra");
         this.inefetivo.add("Eletrico");
     }
+    /**
+     * Retorna um ataque do ArrayList de ataques do tipo rasteiro.
+     * 
+     * @param i int - Indice do ArrayList de ataques do tipo rasteiro
+     * @return Ataque - Ataque do ArrayList de ataques do tipo rasteiro
+     */
     public Ataque getGroundMove(int i){
         return this.groundMove.get(i);
     }
+    /**
+     * Seleciona os 2 últimos ataques do Pokemon.
+     */
+    @Override
     public void chooseLastMoves(){
         this.bootUpGroundMove();
         this.setMove(this.getGroundMove((int)(Math.random()*100)%10), 2);
@@ -34,6 +55,9 @@ public class Rasteiro extends Pokemon{
         }while(this.getMove(2).getNome().equals(this.getMove(3).getNome()));
         this.groundMove.clear();
     }
+    /**
+     * Inicializa o ArrayList de ataques do tipo rasteiro.
+     */
     public void bootUpGroundMove(){
         Ataque aux;
         aux=new Ataque("Bubble Beam", "Eletrico", 2, 65, 1.0);

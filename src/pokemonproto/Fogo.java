@@ -7,12 +7,23 @@ package pokemonproto;
 
 import java.util.ArrayList;
 /**
- *
- * @author romul
+ * Classe representando os Pokemons do tipo fogo.
+ * 
+ * @author Rômulo Santos
+ * 
+ * @version 2.3
+ * 
+ * @since 1.0
  */
 public class Fogo extends Pokemon{
+    /**
+     * ArrayList contendo ataques do tipo fogo, 
+     * a partir dos quais os dois ultimos ataques serão selecionados.
+     */
     private ArrayList<Ataque> fireMove;
-    
+    /**
+     * Construtor da classe.
+     */
     public Fogo(){
         this.fireMove=new ArrayList<>();
         this.setTipo("Fogo");
@@ -24,9 +35,19 @@ public class Fogo extends Pokemon{
         this.resistencias.add("Gelo");
         this.resistencias.add("Inseto");
     }
+    /**
+     * Retorna um ataque do ArrayList de ataques do tipo fogo.
+     * 
+     * @param i int - Indice do ArrayList de ataques do tipo fogo.
+     * @return Ataque - Ataque do ArrayList de ataques do tipo fogo.
+     */
     public Ataque getFireMove(int i){
         return this.fireMove.get(i);
     }
+    /**
+     * Seleciona os 2 últimos ataques do Pokemon.
+     */
+    @Override
     public void chooseLastMoves(){
         this.bootUpFireMove();
         this.setMove(this.getFireMove((int)(Math.random()*100)%10), 2);
@@ -35,6 +56,9 @@ public class Fogo extends Pokemon{
         }while(this.getMove(2).getNome().equals(this.getMove(3).getNome()));
         this.fireMove.clear();
     }
+    /**
+     * Inicializa o ArrayList de ataques do tipo fogo.
+     */
     public void bootUpFireMove(){
         Ataque aux;
         aux=new Ataque("Blaze Kick", "Fogo", 1, 150, 0.9);
