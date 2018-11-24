@@ -7,13 +7,23 @@ package pokemonproto;
 
 import java.util.ArrayList;
 /**
- *
- * @author romul
+ * Classe representando os Pokemons do tipo elétrico.
+ * 
+ * @author Rômulo Santos
+ * 
+ * @version 2.3
+ * 
+ * @since 1.0
  */
 public class Eletrico extends Pokemon{
-    
+    /**
+     * ArrayList contendo ataques do tipo elétrico, 
+     * a partir dos quais os dois ultimos ataques serão selecionados.
+     */
     private ArrayList<Ataque> electricMove;
-    
+    /**
+     * Construtor da classe.
+     */
     public Eletrico(){
         this.electricMove=new ArrayList<>();
         this.setTipo("Eletrico");
@@ -21,9 +31,19 @@ public class Eletrico extends Pokemon{
         this.resistencias.add("Eletrico");
         this.resistencias.add("Voador");
     }
+    /**
+     * Retorna um ataque do ArrayList de ataques do tipo elétrico.
+     * 
+     * @param i int - Indice do ArrayList de ataques do tipo elétrico.
+     * @return Ataque - Ataque do ArrayList de ataques do tipo elétrico.
+     */
     public Ataque getElectricMove(int i){
         return this.electricMove.get(i);
     }
+    /**
+     * Seleciona os 2 últimos ataques do Pokemon.
+     */
+    @Override
     public void chooseLastMoves(){
         this.bootUpElectricMove();
         this.setMove(this.getElectricMove((int)(Math.random()*100)%10), 2);
@@ -32,6 +52,9 @@ public class Eletrico extends Pokemon{
         }while(this.getMove(2).getNome().equals(this.getMove(3).getNome()));
         this.electricMove.clear();
     }
+    /**
+     * Inicializa o ArrayList de ataques do tipo elétrico.
+     */
     public void bootUpElectricMove(){
         Ataque aux;
         aux=new Ataque("Bubble Beam", "Eletrico", 2, 65, 1.0);

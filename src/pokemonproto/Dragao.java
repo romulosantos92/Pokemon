@@ -7,12 +7,23 @@ package pokemonproto;
 
 import java.util.ArrayList;
 /**
- *
- * @author romul
+ * Classe representando os Pokemons do tipo dragão.
+ * 
+ * @author Rômulo Santos
+ * 
+ * @version 2.3
+ * 
+ * @since 1.0
  */
 public class Dragao extends Pokemon{
+    /**
+     * ArrayList contendo ataques do tipo dragão, 
+     * a partir dos quais os dois ultimos ataques serão selecionados.
+     */
     private ArrayList<Ataque> dragonMove;
-    
+    /**
+     * Construtor da classe.
+     */
     public Dragao(){
         this.dragonMove=new ArrayList<>();
         this.setTipo("Dragao");
@@ -23,9 +34,19 @@ public class Dragao extends Pokemon{
         this.resistencias.add("Agua");
         this.resistencias.add("Planta");
     }
+    /**
+     * Retorna um ataque do ArrayList de ataques do tipo dragão.
+     * 
+     * @param i int - Indice do ArrayList de ataques do tipo dragão.
+     * @return Ataque - Ataque do ArrayList de ataques do tipo dragão.
+     */
     public Ataque getDragonMove(int i){
         return this.dragonMove.get(i);
     }
+    /**
+     * Seleciona os 2 últimos ataques do Pokemon.
+     */
+    @Override
     public void chooseLastMoves(){
         this.bootUpDragonMove();
         this.setMove(this.getDragonMove((int)(Math.random()*100)%10), 2);
@@ -34,6 +55,9 @@ public class Dragao extends Pokemon{
         }while(this.getMove(2).getNome().equals(this.getMove(3).getNome()));
         this.dragonMove.clear();
     }
+    /**
+     * Inicializa o ArrayList de ataques do tipo dragão.
+     */
     public void bootUpDragonMove(){
         Ataque aux;
         aux=new Ataque("Bubble Beam", "Eletrico", 2, 65, 1.0);

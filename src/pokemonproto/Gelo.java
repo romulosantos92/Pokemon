@@ -7,12 +7,23 @@ package pokemonproto;
 
 import java.util.ArrayList;
 /**
- *
- * @author romul
+ * Classe representando os Pokemons do tipo gelo.
+ * 
+ * @author Rômulo Santos
+ * 
+ * @version 2.3
+ * 
+ * @since 1.0
  */
 public class Gelo extends Pokemon{
+    /**
+     * ArrayList contendo ataques do tipo gelo, 
+     * a partir dos quais os dois ultimos ataques serão selecionados.
+     */
     private ArrayList<Ataque> iceMove;
-    
+    /**
+     * Construtor da classe.
+     */
     public Gelo(){
         this.iceMove=new ArrayList<>();
         this.setTipo("Gelo");
@@ -21,9 +32,19 @@ public class Gelo extends Pokemon{
         this.fraquezas.add("Pedra");
         this.resistencias.add("Gelo");    
     }
+    /**
+     * Retorna um ataque do ArrayList de ataques do tipo gelo.
+     * 
+     * @param i int - Indice do ArrayList de ataques do tipo gelo.
+     * @return Ataque - Ataque do ArrayList de ataques do tipo gelo.
+     */
     public Ataque getIceMove(int i){
         return this.iceMove.get(i);
     }
+    /**
+     * Seleciona os 2 últimos ataques do Pokemon.
+     */
+    @Override
     public void chooseLastMoves(){
         this.bootUpIceMove();
         this.setMove(this.getIceMove((int)(Math.random()*100)%10), 2);
@@ -32,6 +53,9 @@ public class Gelo extends Pokemon{
         }while(this.getMove(2).getNome().equals(this.getMove(3).getNome()));
         this.iceMove.clear();
     }
+    /**
+     * Inicializa o ArrayList de ataques do tipo gelo.
+     */
     public void bootUpIceMove(){
         Ataque aux;
         aux=new Ataque("Bubble Beam", "Eletrico", 2, 65, 1.0);

@@ -7,13 +7,24 @@ package pokemonproto;
 
 import java.util.ArrayList;
 /**
- *
- * @author romul
+ * Classe representando os Pokemons do tipo fantasma.
+ * 
+ * @author Rômulo Santos
+ * 
+ * @version 2.3
+ * 
+ * @since 1.0
  */
 public class Fantasma extends Pokemon{
-    
+    /**
+     * ArrayList contendo ataques do tipo fantasma, 
+     * a partir dos quais os dois ultimos ataques serão selecionados.
+     * 
+     */
     private ArrayList<Ataque> ghostMove;
-    
+    /**
+     * Construtor da classe.
+     */
     public Fantasma(){
         this.ghostMove=new ArrayList<>();
         this.setTipo("Fantasma");
@@ -23,9 +34,19 @@ public class Fantasma extends Pokemon{
         this.inefetivo.add("Normal");
         this.inefetivo.add("Lutador");
     }
+    /**
+     * Retorna um ataque do ArrayList de ataques do tipo fantasma.
+     * 
+     * @param i int - Indice do ArrayList de ataques do tipo fantasma.
+     * @return Ataque - Ataque do ArrayList de ataques do tipo fantasma.
+     */
     public Ataque getGhostMove(int i){
         return this.ghostMove.get(i);
     }
+    /**
+     * Seleciona os 2 últimos ataques do Pokemon.
+     */
+    @Override
     public void chooseLastMoves(){
         this.bootUpGhostMove();
         this.setMove(this.getGhostMove((int)(Math.random()*100)%10), 2);
@@ -34,6 +55,9 @@ public class Fantasma extends Pokemon{
         }while(this.getMove(2).getNome().equals(this.getMove(3).getNome()));
         this.ghostMove.clear();
     }
+    /**
+     * Inicializa o ArrayList de ataques do tipo fantasma.
+     */
     public void bootUpGhostMove(){
         Ataque aux;
         aux=new Ataque("Hex", "Fantasma", 2, 65, 1.0);
